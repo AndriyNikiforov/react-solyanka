@@ -1,0 +1,31 @@
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.text-block {
+  max-width: 50%;
+  text-align: justify;
+  margin: auto;
+  text-overflow: ellipsis;
+}
+
+.content {
+  grid-area: main;
+  padding: 15px 5px 10px;
+}

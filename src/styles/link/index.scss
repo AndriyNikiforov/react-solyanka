@@ -1,0 +1,23 @@
+.link {
+  border-top: 10px;
+  border-width: 10px;
+  background-color: #96C0CE;
+  font-size: 16px;
+}
+
+.link:hover {
+  background-color: #C25B56;
+}
+
+.link a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  text-overflow: ellipsis;
+  padding: 14px 16px;
+}
+
+.link a:visited {
+  color: black;
+}

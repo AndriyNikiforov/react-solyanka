@@ -1,0 +1,15 @@
+.footer {
+  grid-area: footer;
+  background-color: #525564;
+}
+
+.footer-text-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.footer-text {
+  color: #DADDD8;
+  font-size: 14px;
+}
