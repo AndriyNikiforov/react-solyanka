@@ -6,22 +6,15 @@ import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
 import { editTodo, addTodo, updateTodo } from '../../actions';
 
-const mapStateToProps = (state, ownProps) => {
-  if (ownProps.match.params.id) {
-    return {
-    };
-  }
-
-  return {
-    todo: state,
-    id: ownProps.match.params.id,
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  todo: state,
+  id: ownProps.match.params.id,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   addTodoAction: (todo) => dispatch(addTodo(todo)),
+  editTodoAction: (id) => dispatch(editTodo(id)),
   updateTodoAction: (todo) => dispatch(updateTodo(todo)),
-  loadEditData: (id) => dispatch(editTodo(id)),
 });
 
 class TodoForm extends Component {
@@ -29,7 +22,7 @@ class TodoForm extends Component {
     super(props);
 
     this.state = {
-      todo: {},
+      todo: { },
     };
 
     this.onChange = this.onChange.bind(this);
@@ -37,16 +30,12 @@ class TodoForm extends Component {
   }
 
   componentDidMount() {
-    const { id, loadEditData } = this.props;
+    const { match, editTodoAction } = this.props;
+    const { id } = match.params;
 
     if (id) {
-      loadEditData(id);
+      editTodoAction(id);
     }
-  }
-
-  componentDidUpdate() {
-    const { todo } = this.props;
-    console.log(todo);
   }
 
   onChange(event) {

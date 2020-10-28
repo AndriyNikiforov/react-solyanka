@@ -9,7 +9,7 @@ import {
 
 export const addTodo = (todo) => ({
   type: ADD_TODO,
-  todo,
+  payload: { todo },
 });
 
 export const deleteTodo = (id) => ({
@@ -29,7 +29,7 @@ export const editTodo = (id) => ({
 
 export const updateTodo = (todo) => ({
   type: UPDATE_TODO,
-  payload: todo,
+  payload: { todo },
 });
 
 export const setVisibilityFilter = (filter) => ({

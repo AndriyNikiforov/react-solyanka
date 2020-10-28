@@ -6,6 +6,7 @@ import {
   DELETE_TODO,
   VISIBILITY_FILTERS,
   SET_VISIBILITY_FILTER,
+  UPDATE_TODO,
 } from '../constants';
 
 const { SHOW_ALL } = VISIBILITY_FILTERS;
@@ -20,21 +21,32 @@ function visibilityFilter(state = SHOW_ALL, action) {
   }
 }
 
-function todos(state = initialState, action) {
+function todo(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
       return state.concat([{
-        ...action.todo,
+        ...action.payload.todo,
         status: 'ACTIVE',
         id: state.length + 1,
       }]);
     case EDIT_TODO:
-      return state.filter((todo) => Number(todo.id) === Number(action.payload.id))[0];
-    case TOGGLE_TODO:
-      return state.map((todo) => {
-        if (todo.id === action.payload.id) {
+      return state.find((item) => Number(item.id) === Number(action.payload.id));
+    case UPDATE_TODO:
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
           return {
-            ...todo,
+            ...item,
+            ...action.payload,
+          };
+        }
+
+        return state;
+      });
+    case TOGGLE_TODO:
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
             status: 'Completed',
           };
         }
@@ -42,14 +54,14 @@ function todos(state = initialState, action) {
         return state;
       });
     case DELETE_TODO:
-      return state.filter((todo) => todo.id !== action.payload.id);
+      return state.filter((item) => item.id !== action.payload.id);
     default: return state;
   }
 }
 
 const rootReducer = combineReducers({
   visibilityFilter,
-  todos,
+  todo,
 });
 
 export default rootReducer;

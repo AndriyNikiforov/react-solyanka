@@ -19,9 +19,11 @@ const mapStateToProps = (state) => ({
 
 const List = (props) => {
   const { data, onClickComplete, onClickDelete } = props;
-  const items = (data.todos.length > 0) ? data.todos.map((item) => (
+  const items = (data.todo.length > 0) ? data.todo.map((item) => (
     <li key={item.id}>
       {item.content}
+      <br />
+      {item.title}
       <br />
       {item.status}
       <br />

@@ -14,7 +14,7 @@ const Home = ({ dataTodos }) => (
     <Article className="content">
       <div className="section">
         <TextBlock text="TODO" />
-        <List data={dataTodos.todos} />
+        <List data={dataTodos.todo} />
       </div>
     </Article>
     <Footer />
