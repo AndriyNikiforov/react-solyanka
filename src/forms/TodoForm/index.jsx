@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Label from '../../components/Label';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
-import { editTodo, addTodo, updateTodo } from '../../actions';
+import { addTodo, updateTodo } from '../../actions';
 
 const mapStateToProps = (state, ownProps) => ({
   todo: state.todo.find((item) => Number(item.id) === Number(ownProps.match.params.id)) || null,
@@ -13,7 +13,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addTodoAction: (todo) => dispatch(addTodo(todo)),
-  editTodoAction: (id) => dispatch(editTodo(id)),
   updateTodoAction: (todo) => dispatch(updateTodo(todo)),
 });
 

@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import {
   ADD_TODO,
-  EDIT_TODO,
   TOGGLE_TODO,
   DELETE_TODO,
   VISIBILITY_FILTERS,
@@ -29,15 +28,13 @@ function todo(state = initialState, action) {
         status: 'ACTIVE',
         id: state.length + 1,
       }]);
-    case EDIT_TODO:
-      return state.find((item) => Number(item.id) === Number(action.payload.todo.id));
     case UPDATE_TODO:
       return state.map((item) => {
-        if (Number(item.id) === Number(action.payload.todo.id)) {
-          const updatedState = { ...item, ...action.payload.todo };
-          return updatedState;
+        if (Number(item.id) !== Number(action.payload.todo.id)) {
+          return item;
         }
-        return state;
+
+        return { ...item, ...action.payload.todo };
       });
     case TOGGLE_TODO:
       return state.map((item) => {
