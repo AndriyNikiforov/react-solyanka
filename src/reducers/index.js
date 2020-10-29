@@ -30,21 +30,18 @@ function todo(state = initialState, action) {
         id: state.length + 1,
       }]);
     case EDIT_TODO:
-      return state.find((item) => Number(item.id) === Number(action.payload.id));
+      return state.find((item) => Number(item.id) === Number(action.payload.todo.id));
     case UPDATE_TODO:
       return state.map((item) => {
-        if (item.id === action.payload.id) {
-          return {
-            ...item,
-            ...action.payload,
-          };
+        if (Number(item.id) === Number(action.payload.todo.id)) {
+          const updatedState = { ...item, ...action.payload.todo };
+          return updatedState;
         }
-
         return state;
       });
     case TOGGLE_TODO:
       return state.map((item) => {
-        if (item.id === action.payload.id) {
+        if (Number(item.id) === Number(action.payload.id)) {
           return {
             ...item,
             status: 'Completed',
@@ -54,7 +51,7 @@ function todo(state = initialState, action) {
         return state;
       });
     case DELETE_TODO:
-      return state.filter((item) => item.id !== action.payload.id);
+      return state.filter((item) => Number(item.id) !== Number(action.payload.id));
     default: return state;
   }
 }

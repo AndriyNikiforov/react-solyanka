@@ -21,6 +21,7 @@ const List = (props) => {
   const { data, onClickComplete, onClickDelete } = props;
   const items = (data.todo.length > 0) ? data.todo.map((item) => (
     <li key={item.id}>
+      {item.id}
       {item.content}
       <br />
       {item.title}
