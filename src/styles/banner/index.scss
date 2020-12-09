@@ -1,0 +1,28 @@
+.cookie-banner {
+  bottom: 40px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  background-color: rgb(133, 201, 176);
+}
+
+.cookie-banner-text {
+  text-align: center;
+  font-weight: 600;
+}
+
+.cookie-banner-button {
+  border: none;
+  border-radius: 5px;
+  background-color: #555555;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  color: wheat;
+  font-weight: 600;
+}

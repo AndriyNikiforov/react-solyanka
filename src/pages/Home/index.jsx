@@ -6,7 +6,8 @@ import Article from '../../components/Article';
 import TextBlock from '../../components/TextBlock';
 import List from '../../components/List';
 import Footer from '../../components/Footer';
-import { setVisibilityFilter } from '../../actions';
+import CookieBanner from '../../components/CookieBanner';
+import { setVisibilityFilter } from '../../actions/todo';
 
 const Home = ({ dataTodos }) => (
   <div className="container">
@@ -17,6 +18,7 @@ const Home = ({ dataTodos }) => (
         <List data={dataTodos.todo} />
       </div>
     </Article>
+    <CookieBanner />
     <Footer />
   </div>
 );

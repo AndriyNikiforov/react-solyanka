@@ -6,7 +6,7 @@ import {
   VISIBILITY_FILTERS,
   SET_VISIBILITY_FILTER,
   UPDATE_TODO,
-} from '../constants';
+} from '../../constants';
 
 const { SHOW_ALL } = VISIBILITY_FILTERS;
 const initialState = [];

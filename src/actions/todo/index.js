@@ -4,7 +4,7 @@ import {
   DELETE_TODO,
   UPDATE_TODO,
   SET_VISIBILITY_FILTER,
-} from '../constants';
+} from '../../constants';
 
 export const addTodo = (todo) => ({
   type: ADD_TODO,
