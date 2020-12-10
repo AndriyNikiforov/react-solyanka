@@ -15,6 +15,7 @@ export function* todoAllSaga(payload) {
 
     yield put(todos.success(todosData));
   } catch (error) {
+    console.log(error);
     yield put(todos.failure(error));
   }
 }

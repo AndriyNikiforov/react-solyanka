@@ -10,23 +10,23 @@ import { getAllTodoResult } from '../../reducers/todo';
 import todos from '../../actions/todo';
 
 const mapStateToProps = (state) => ({
-  todo: getAllTodoResult(state),
+  todos: getAllTodoResult(state),
 });
 
-const Home = ({ todo }) => {
+const Home = ({ todos: todosData }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(todos.request());
   }, [dispatch]);
-
+  console.log(todosData);
   return (
     <div className="container">
       <Header />
       <Article className="content">
         <div className="section">
           <TextBlock text="TODO" />
-          <List data={todo} />
+          <List data={todosData} />
         </div>
       </Article>
       <Footer />
@@ -35,11 +35,11 @@ const Home = ({ todo }) => {
 };
 
 Home.propTypes = {
-  todo: PropTypes.objectOf(PropTypes.any),
+  todos: PropTypes.objectOf(PropTypes.any),
 };
 
 Home.defaultProps = {
-  todo: {},
+  todos: {},
 };
 
 export default connect(mapStateToProps)(Home);

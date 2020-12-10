@@ -10,18 +10,18 @@ import {
 } from '../../constants';
 
 function action(type, payload = {}) {
-  return { type, ...payload };
+  return { type, payload };
 }
 
 const todos = {
-  request: (response) => action(ALL_REQUEST_TODO, { response }),
-  success: (response) => action(ALL_SUCCESS_TODO, { response }),
-  failure: (response) => action(ALL_FAILURE_TODO, { response }),
-  add: (request) => action(ADD_TODO, { request }),
-  delete: (request) => action(DELETE_TODO, { request }),
-  update: (request) => action(UPDATE_TODO, { request }),
-  detail: (request) => action(DETAIL_TODO, { request }),
-  toggle: (request) => action(TOGGLE_TODO, { request }),
+  request: (response) => action(ALL_REQUEST_TODO, response),
+  success: (response) => action(ALL_SUCCESS_TODO, response),
+  failure: (response) => action(ALL_FAILURE_TODO, response),
+  add: (request) => action(ADD_TODO, request),
+  delete: (request) => action(DELETE_TODO, request),
+  update: (request) => action(UPDATE_TODO, request),
+  detail: (request) => action(DETAIL_TODO, request),
+  toggle: (request) => action(TOGGLE_TODO, request),
 };
 
 export default todos;
