@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Label from '../../components/Label';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
-import { addTodo, updateTodo } from '../../actions/todo';
+import todos from '../../actions/todo';
 
 const mapStateToProps = (state, ownProps) => ({
   todo: state.todo.find((item) => Number(item.id) === Number(ownProps.match.params.id)) || null,
@@ -12,8 +12,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addTodoAction: (todo) => dispatch(addTodo(todo)),
-  updateTodoAction: (todo) => dispatch(updateTodo(todo)),
+  addTodoAction: (todo) => dispatch(todos.add(todo)),
+  updateTodoAction: (todo) => dispatch(todos.update(todo)),
 });
 
 class TodoForm extends Component {

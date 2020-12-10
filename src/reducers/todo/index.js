@@ -1,20 +1,24 @@
 import { combineReducers } from 'redux';
 import {
   ADD_TODO,
-  TOGGLE_TODO,
+  ALL_FAILURE_TODO,
+  ALL_REQUEST_TODO,
+  ALL_SUCCESS_TODO,
   DELETE_TODO,
-  VISIBILITY_FILTERS,
-  SET_VISIBILITY_FILTER,
+  TOGGLE_TODO,
   UPDATE_TODO,
 } from '../../constants';
 
-const { SHOW_ALL } = VISIBILITY_FILTERS;
 const initialState = [];
 
-function visibilityFilter(state = SHOW_ALL, action) {
+function loadingTodo(state = false, action) {
   switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return action.filter;
+    case ALL_REQUEST_TODO:
+      return true;
+    case ALL_SUCCESS_TODO:
+      return false;
+    case ALL_FAILURE_TODO:
+      return false;
     default:
       return state;
   }
@@ -22,6 +26,10 @@ function visibilityFilter(state = SHOW_ALL, action) {
 
 function todo(state = initialState, action) {
   switch (action.type) {
+    case ALL_SUCCESS_TODO:
+      return [...action.payload];
+    case ALL_FAILURE_TODO:
+      return state;
     case ADD_TODO:
       return state.concat([{
         ...action.payload.todo,
@@ -53,8 +61,10 @@ function todo(state = initialState, action) {
   }
 }
 
+export const getAllTodoResult = (state) => state;
+
 const rootReducer = combineReducers({
-  visibilityFilter,
+  loadingTodo,
   todo,
 });
 

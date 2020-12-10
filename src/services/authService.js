@@ -7,7 +7,7 @@ import {
 
 export const registerUserService = (request) => {
   const data = axios.post(REGISTER_API_ENDPOINT, request.user)
-    .then((response) => (response));
+    .then((response) => response);
 
   return data;
 };

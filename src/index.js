@@ -10,15 +10,15 @@ import history from './utils/history';
 import './styles/index.scss';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Routes />
-      <Helmet>
-        <html lang="en" />
-        <meta charSet="utf-8" />
-        <title>Title</title>
-      </Helmet>
-    </Router>
-  </Provider>,
-  document.getElementById('root'),
+    <Provider store={store}>
+      <Router history={history}>
+        <Routes />
+        <Helmet>
+          <html lang="en" />
+          <meta charSet="utf-8" />
+          <title>Title</title>
+        </Helmet>
+      </Router>
+    </Provider>,
+    document.getElementById('root'),
 );
