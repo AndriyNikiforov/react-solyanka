@@ -9,7 +9,7 @@ const TodoCreate = () => (
     <Header />
     <Article className="content">
       <div className="section">
-        <TodoForm todoProps={{}} />
+        <TodoForm />
       </div>
     </Article>
     <Footer />

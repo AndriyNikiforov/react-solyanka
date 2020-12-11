@@ -4,24 +4,16 @@ import { withRouter } from 'react-router-dom';
 import Label from '../../components/Label';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
-import { editTodo, addTodo, updateTodo } from '../../actions';
+import todos from '../../actions/todo';
 
-const mapStateToProps = (state, ownProps) => {
-  if (ownProps.match.params.id) {
-    return {
-    };
-  }
-
-  return {
-    todo: state,
-    id: ownProps.match.params.id,
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  todo: state.todo.find((item) => Number(item.id) === Number(ownProps.match.params.id)) || null,
+  id: ownProps.match.params.id,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  addTodoAction: (todo) => dispatch(addTodo(todo)),
-  updateTodoAction: (todo) => dispatch(updateTodo(todo)),
-  loadEditData: (id) => dispatch(editTodo(id)),
+  addTodoAction: (todo) => dispatch(todos.add(todo)),
+  updateTodoAction: (todo) => dispatch(todos.update(todo)),
 });
 
 class TodoForm extends Component {
@@ -37,16 +29,15 @@ class TodoForm extends Component {
   }
 
   componentDidMount() {
-    const { id, loadEditData } = this.props;
+    const { todo: propTodo } = this.props;
 
-    if (id) {
-      loadEditData(id);
+    if (propTodo) {
+      this.setState(() => ({
+        todo: {
+          ...propTodo,
+        },
+      }));
     }
-  }
-
-  componentDidUpdate() {
-    const { todo } = this.props;
-    console.log(todo);
   }
 
   onChange(event) {
@@ -68,15 +59,15 @@ class TodoForm extends Component {
 
     if (todo.id) {
       updateTodoAction(todo);
+    } else {
+      addTodoAction(todo);
     }
-
-    addTodoAction(todo);
 
     history.push('/');
   }
 
   render() {
-    const { todo } = this.state;
+    const { todo: stateTodo } = this.state;
 
     return (
       <form onSubmit={this.onSubmit} className="form">
@@ -85,7 +76,7 @@ class TodoForm extends Component {
           <Input
             name="title"
             type="text"
-            value={todo.title}
+            value={stateTodo.title}
             className="form-control"
             placeholder="Title"
             onChange={this.onChange}
@@ -95,7 +86,7 @@ class TodoForm extends Component {
           <Label text="Todo text" htmlFor="content" className="label-info" />
           <TextArea
             name="content"
-            value={todo.content}
+            value={stateTodo.content}
             className="form-control-textarea"
             placeholder="Content"
             onChange={this.onChange}

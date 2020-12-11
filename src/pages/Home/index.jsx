@@ -1,42 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import Article from '../../components/Article';
 import TextBlock from '../../components/TextBlock';
 import List from '../../components/List';
 import Footer from '../../components/Footer';
-import { setVisibilityFilter } from '../../actions';
+import { getAllTodoResult } from '../../reducers/todo';
+import todos from '../../actions/todo';
 
-const Home = ({ dataTodos }) => (
-  <div className="container">
-    <Header />
-    <Article className="content">
-      <div className="section">
-        <TextBlock text="TODO" />
-        <List data={dataTodos.todos} />
-      </div>
-    </Article>
-    <Footer />
-  </div>
-);
+const mapStateToProps = (state) => ({
+  todos: getAllTodoResult(state),
+});
+
+const Home = ({ todos: todosData }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(todos.request());
+  }, [dispatch]);
+  console.log(todosData);
+  return (
+    <div className="container">
+      <Header />
+      <Article className="content">
+        <div className="section">
+          <TextBlock text="TODO" />
+          <List data={todosData} />
+        </div>
+      </Article>
+      <Footer />
+    </div>
+  );
+};
 
 Home.propTypes = {
-  dataTodos: PropTypes.objectOf(PropTypes.any),
+  todos: PropTypes.objectOf(PropTypes.any),
 };
 
 Home.defaultProps = {
-  dataTodos: {},
+  todos: {},
 };
 
-const mapStateToProps = (state) => ({
-  dataTodos: state,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setVisibilityFilterData: dispatch(setVisibilityFilter('SHOW_ALL')),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

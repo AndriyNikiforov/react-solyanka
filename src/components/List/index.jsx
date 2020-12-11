@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteTodo, toggleTodo } from '../../actions';
+import todos from '../../actions/todo';
 
 const mapDispatchToProps = (dispatch) => ({
   onClickComplete: (id) => {
-    dispatch(toggleTodo(id, 'COMPLETED'));
+    dispatch(todos.toggle(id, 'COMPLETED'));
   },
   onClickDelete: (id) => {
-    dispatch(deleteTodo(id));
+    dispatch(todos.delete(id));
   },
 });
 
@@ -19,9 +19,11 @@ const mapStateToProps = (state) => ({
 
 const List = (props) => {
   const { data, onClickComplete, onClickDelete } = props;
-  const items = (data.todos.length > 0) ? data.todos.map((item) => (
+  const items = (data.todo.length > 0) ? data.todo.map((item) => (
     <li key={item.id}>
       {item.content}
+      <br />
+      {item.title}
       <br />
       {item.status}
       <br />
