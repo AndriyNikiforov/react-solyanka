@@ -25,7 +25,7 @@ export const todoCreateService = (request) => {
 };
 
 export const todoDetailService = (request) => {
-  const data = axios.get(TODO_DETAIL, request, {
+  const data = axios.get(TODO_DETAIL.replace(':id', request.payload.id), request, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -43,7 +43,7 @@ export const todoUpdateService = (request) => {
 };
 
 export const todoDeleteService = (request) => {
-  const data = axios.delete(TODO_DELETE, request.payload)
+  const data = axios.delete(TODO_DELETE.replace(':id', request.payload.id), request.payload)
     .then((response) => response);
 
   return data;

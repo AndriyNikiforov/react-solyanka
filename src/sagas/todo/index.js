@@ -51,8 +51,14 @@ export function* todoUpdateSaga(payload) {
 }
 
 export function* todoDeleteSaga(payload) {
-  const response = yield call(todoDeleteService, payload);
-  const { todos: todosData } = response.data;
+  try {
+    yield call(todoDeleteService, payload);
 
-  yield put(todos.delete(todosData));
+    const response = yield call(todoAllService, payload);
+    const { todos: todosData } = response.data;
+
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }
