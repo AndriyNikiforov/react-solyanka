@@ -18,11 +18,7 @@ export const todoAllService = () => {
 };
 
 export const todoCreateService = (request) => {
-  const data = axios.post(TODO_CREATE, request, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  const data = axios.post(TODO_CREATE, request.payload)
     .then((response) => response);
 
   return data;
@@ -40,22 +36,14 @@ export const todoDetailService = (request) => {
 };
 
 export const todoUpdateService = (request) => {
-  const data = axios.put(TODO_UPDATE, request, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  const data = axios.put(TODO_UPDATE, request.payload)
     .then((response) => response);
 
   return data;
 };
 
 export const todoDeleteService = (request) => {
-  const data = axios.delete(TODO_DELETE, request, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  const data = axios.delete(TODO_DELETE, request.payload)
     .then((response) => response);
 
   return data;

@@ -20,9 +20,15 @@ export function* todoAllSaga(payload) {
 }
 
 export function* todoCreateSaga(payload) {
-  yield call(todoCreateService, payload);
+  try {
+    yield call(todoCreateService, payload);
+    const response = yield call(todoAllService, payload);
+    const { todos: todosData } = response.data;
 
-  yield put(todos.add(payload));
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }
 
 export function* todoDetailSaga(payload) {
@@ -33,10 +39,15 @@ export function* todoDetailSaga(payload) {
 }
 
 export function* todoUpdateSaga(payload) {
-  const response = yield call(todoUpdateService, payload);
-  const { todos: todosData } = response.data;
+  try {
+    yield call(todoUpdateService, payload);
+    const response = yield call(todoAllService, payload);
+    const { todos: todosData } = response.data;
 
-  yield put(todos.update(todosData));
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }
 
 export function* todoDeleteSaga(payload) {

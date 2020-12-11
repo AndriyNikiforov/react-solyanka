@@ -1,5 +1,6 @@
 import {
   ADD_TODO,
+  API_ERROR,
   TOGGLE_TODO,
   DELETE_TODO,
   UPDATE_TODO,
@@ -22,6 +23,7 @@ const todos = {
   update: (request) => action(UPDATE_TODO, request),
   detail: (request) => action(DETAIL_TODO, request),
   toggle: (request) => action(TOGGLE_TODO, request),
+  apiError: (response) => action(API_ERROR, response),
 };
 
 export default todos;

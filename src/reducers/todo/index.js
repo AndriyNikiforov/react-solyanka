@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {
   ADD_TODO,
+  API_ERROR,
   ALL_FAILURE_TODO,
   ALL_REQUEST_TODO,
   ALL_SUCCESS_TODO,
@@ -32,17 +33,17 @@ function todo(state = initialState, action) {
       return state;
     case ADD_TODO:
       return state.concat([{
-        ...action.payload.todo,
+        ...action.payload,
         status: 'ACTIVE',
         id: state.length + 1,
       }]);
     case UPDATE_TODO:
       return state.map((item) => {
-        if (Number(item.id) !== Number(action.payload.todo.id)) {
+        if (Number(item.id) !== Number(action.payload.id)) {
           return item;
         }
 
-        return { ...item, ...action.payload.todo };
+        return { ...item, ...action.payload };
       });
     case TOGGLE_TODO:
       return state.map((item) => {
@@ -57,6 +58,8 @@ function todo(state = initialState, action) {
       });
     case DELETE_TODO:
       return state.filter((item) => Number(item.id) !== Number(action.payload.id));
+    case API_ERROR:
+      return state;
     default: return state;
   }
 }

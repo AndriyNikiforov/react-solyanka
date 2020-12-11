@@ -19,7 +19,7 @@ const Home = ({ todos: todosData }) => {
   useEffect(() => {
     dispatch(todos.request());
   }, [dispatch]);
-  console.log(todosData);
+
   return (
     <div className="container">
       <Header />
