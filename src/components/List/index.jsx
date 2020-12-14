@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import todos from '../../actions/todo';
 
 const mapDispatchToProps = (dispatch) => ({
-  onClickComplete: (id) => {
-    dispatch(todos.toggle(id, 'COMPLETED'));
+  onClickComplete: (todo) => {
+    dispatch(todos.toggle(todo, 'COMPLETED'));
   },
-  onClickDelete: (id) => {
-    dispatch(todos.delete(id));
+  onClickDelete: (todo) => {
+    dispatch(todos.delete(todo));
   },
 });
 
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 const List = (props) => {
   const { data, onClickComplete, onClickDelete } = props;
   const items = (data.todo.length > 0) ? data.todo.map((item) => (
-    <li key={item.id + 1}>
+    <li key={item.id}>
       {item.content}
       <br />
       {item.title}
@@ -31,7 +31,7 @@ const List = (props) => {
         Edit
       </Link>
       <br />
-      <input value="Complete" type="button" onClick={() => onClickComplete(item.id)} />
+      <input value="Complete" type="button" onClick={() => onClickComplete({ ...item, status: 'COMPLETED' })} />
       <br />
       <input value="Remove" type="button" onClick={() => onClickDelete(item.id)} />
     </li>

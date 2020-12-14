@@ -5,6 +5,7 @@ import {
   TODO_DETAIL,
   TODO_UPDATE,
   TODO_DELETE,
+  TODO_TOGGLE,
 } from '../constants/api';
 
 export const todoAllService = () => {
@@ -35,6 +36,13 @@ export const todoDetailService = (request) => {
   return data;
 };
 
+export const todoToggleService = (request) => {
+  const data = axios.put(TODO_TOGGLE, request.payload)
+    .then((response) => response);
+
+  return data;
+};
+
 export const todoUpdateService = (request) => {
   const data = axios.put(TODO_UPDATE, request.payload)
     .then((response) => response);
@@ -43,7 +51,7 @@ export const todoUpdateService = (request) => {
 };
 
 export const todoDeleteService = (request) => {
-  const data = axios.delete(TODO_DELETE.replace(':id', request.payload.id), request.payload)
+  const data = axios.delete(TODO_DELETE.replace(':id', request.payload))
     .then((response) => response);
 
   return data;

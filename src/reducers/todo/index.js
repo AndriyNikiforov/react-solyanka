@@ -47,17 +47,15 @@ function todo(state = initialState, action) {
       });
     case TOGGLE_TODO:
       return state.map((item) => {
-        if (Number(item.id) === Number(action.payload.id)) {
-          return {
-            ...item,
-            status: 'Completed',
-          };
+        if (Number(item.id) !== Number(action.payload.id)) {
+          return item;
         }
 
-        return state;
+        return { ...item, status: 'COMPLETED' };
       });
     case DELETE_TODO:
-      return state.filter((item) => Number(item.id) !== Number(action.payload.id));
+      console.log('id=', action.payload);
+      return state;
     case API_ERROR:
       return state;
     default: return state;

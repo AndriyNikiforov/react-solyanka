@@ -5,6 +5,7 @@ import {
   todoCreateService,
   todoUpdateService,
   todoDeleteService,
+  todoToggleService,
 } from '../../services/todoService';
 import todos from '../../actions/todo';
 
@@ -32,10 +33,26 @@ export function* todoCreateSaga(payload) {
 }
 
 export function* todoDetailSaga(payload) {
-  const response = yield call(todoDetailService, payload);
-  const { todos: todosData } = response.data;
+  try {
+    const response = yield call(todoDetailService, payload);
+    const { todos: todosData } = response.data;
 
-  yield put(todos.detail(todosData));
+    yield put(todos.detail(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
+}
+
+export function* todoToggleSaga(payload) {
+  try {
+    yield call(todoToggleService, payload);
+    const response = yield call(todoAllService, payload);
+    const { todos: todosData } = response.data;
+
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }
 
 export function* todoUpdateSaga(payload) {
@@ -59,6 +76,7 @@ export function* todoDeleteSaga(payload) {
 
     yield put(todos.success(todosData));
   } catch (error) {
+    console.log(error);
     yield put(todos.apiError(error));
   }
 }
