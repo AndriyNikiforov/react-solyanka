@@ -57,10 +57,10 @@ class SignInForm extends React.Component {
           <Label
             text="Email"
             htmlFor="email"
-            className=""
+            className="label-info"
           />
           <Input
-            className=""
+            className="form-control"
             name="email"
             type="email"
             value={user.email}
@@ -72,10 +72,10 @@ class SignInForm extends React.Component {
           <Label
             text="Password"
             htmlFor="password"
-            className=""
+            className="label-info"
           />
           <Input
-            className=""
+            className="form-control"
             name="password"
             type="password"
             value={user.password}
