@@ -76,7 +76,6 @@ export function* todoDeleteSaga(payload) {
 
     yield put(todos.success(todosData));
   } catch (error) {
-    console.log(error);
     yield put(todos.apiError(error));
   }
 }

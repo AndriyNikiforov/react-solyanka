@@ -37,7 +37,7 @@ export const todoDetailService = (request) => {
 };
 
 export const todoToggleService = (request) => {
-  const data = axios.put(TODO_TOGGLE, request.payload)
+  const data = axios.put(TODO_TOGGLE.replace(':id', request.payload.id), request.payload)
     .then((response) => response);
 
   return data;

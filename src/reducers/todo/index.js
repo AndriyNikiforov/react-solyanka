@@ -54,7 +54,6 @@ function todo(state = initialState, action) {
         return { ...item, status: 'COMPLETED' };
       });
     case DELETE_TODO:
-      console.log('id=', action.payload);
       return state;
     case API_ERROR:
       return state;
