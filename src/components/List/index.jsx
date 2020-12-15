@@ -17,30 +17,56 @@ const mapStateToProps = (state) => ({
   data: state,
 });
 
-const List = (props) => {
-  const { data, onClickComplete, onClickDelete } = props;
-  const items = (data.todo.length > 0) ? data.todo.map((item) => (
-    <li key={item.id}>
-      {item.content}
-      <br />
-      {item.title}
-      <br />
-      {item.status}
-      <br />
-      <Link to={`/edit/${item.id}`}>
-        Edit
-      </Link>
-      <br />
-      <input value="Complete" type="button" onClick={() => onClickComplete({ ...item, status: 'COMPLETED' })} />
-      <br />
-      <input value="Remove" type="button" onClick={() => onClickDelete(item.id)} />
-    </li>
-  )) : (<></>);
+class List extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <ul>{items}</ul>
-  );
-};
+    this.listElements = this.listElements.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    let shouldUpdate = true;
+    const { data: nextTodo } = nextProps;
+    const { data: currentTodo } = this.props;
+
+    if (nextTodo.todo === currentTodo.todo) {
+      shouldUpdate = false;
+    }
+
+    return shouldUpdate;
+  }
+
+  listElements() {
+    const { data, onClickComplete, onClickDelete } = this.props;
+    const items = (data.todo.length > 0) ? data.todo.map((item) => (
+      <li key={item.id}>
+        {item.content}
+        <br />
+        {item.title}
+        <br />
+        {item.status}
+        <br />
+        <Link to={`/edit/${item.id}`}>
+          Edit
+        </Link>
+        <br />
+        <input value="Complete" type="button" onClick={() => onClickComplete({ ...item, status: 'COMPLETED' })} />
+        <br />
+        <input value="Remove" type="button" onClick={() => onClickDelete(item.id)} />
+      </li>
+    )) : (<></>);
+
+    return items;
+  }
+
+  render() {
+    const items = this.listElements();
+
+    return (
+      <ul>{items}</ul>
+    );
+  }
+}
 
 List.propTypes = {
   data: PropTypes.objectOf(PropTypes.any),
