@@ -4,17 +4,14 @@ import {
   LOGOUT_USER,
 } from '../../constants';
 
-export const registerUserAction = (user) => ({
-  type: REGISTER_USER,
-  payload: user,
-});
+function action(type, payload = {}) {
+  return { type, payload };
+}
 
-export const loginUserAction = (user) => ({
-  type: LOGIN_USER,
-  payload: user,
-});
+const auth = {
+  registerUserAction: (request) => action(REGISTER_USER, request),
+  loginUserAction: (request) => action(LOGIN_USER, request),
+  logoutUserAction: (request) => action(LOGOUT_USER, request),
+};
 
-export const logoutUserAction = (user) => ({
-  type: LOGOUT_USER,
-  payload: user,
-});
+export default auth;

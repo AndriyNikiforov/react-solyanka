@@ -11,6 +11,12 @@ const Header = () => (
         <li className="link">
           <Link to="/create">Todo</Link>
         </li>
+        <li className="link">
+          <Link to="/signin">SignIn</Link>
+        </li>
+        <li className="link">
+          <Link to="/signup">SignUp</Link>
+        </li>
       </ul>
     </nav>
   </header>

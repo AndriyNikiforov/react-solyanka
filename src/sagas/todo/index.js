@@ -23,6 +23,7 @@ export function* todoAllSaga(payload) {
 export function* todoCreateSaga(payload) {
   try {
     yield call(todoCreateService, payload);
+
     const response = yield call(todoAllService, payload);
     const { todos: todosData } = response.data;
 
@@ -46,6 +47,7 @@ export function* todoDetailSaga(payload) {
 export function* todoToggleSaga(payload) {
   try {
     yield call(todoToggleService, payload);
+
     const response = yield call(todoAllService, payload);
     const { todos: todosData } = response.data;
 
@@ -58,6 +60,7 @@ export function* todoToggleSaga(payload) {
 export function* todoUpdateSaga(payload) {
   try {
     yield call(todoUpdateService, payload);
+
     const response = yield call(todoAllService, payload);
     const { todos: todosData } = response.data;
 
