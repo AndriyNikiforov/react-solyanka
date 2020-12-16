@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
   ADD_TODO,
   API_ERROR,
@@ -12,7 +11,7 @@ import {
 
 const initialState = [];
 
-function loadingTodo(state = false, action) {
+export function loadingTodo(state = false, action) {
   switch (action.type) {
     case ALL_REQUEST_TODO:
       return true;
@@ -25,7 +24,7 @@ function loadingTodo(state = false, action) {
   }
 }
 
-function todo(state = initialState, action) {
+export function todo(state = initialState, action) {
   switch (action.type) {
     case ALL_SUCCESS_TODO:
       return [...action.payload];
@@ -62,10 +61,3 @@ function todo(state = initialState, action) {
 }
 
 export const getAllTodoResult = (state) => state;
-
-const rootReducer = combineReducers({
-  loadingTodo,
-  todo,
-});
-
-export default rootReducer;

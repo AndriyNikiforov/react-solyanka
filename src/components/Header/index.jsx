@@ -12,7 +12,7 @@ const Header = () => (
           <Link to="/create">Todo</Link>
         </li>
         <li className="link">
-          <Link to="/signin">SignIn</Link>
+          <Link to="/login">SignIn</Link>
         </li>
         <li className="link">
           <Link to="/signup">SignUp</Link>

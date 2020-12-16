@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 import Label from '../../components/Label';
 import Input from '../../components/Input';
 
-import history from '../../utils/history';
 import auth from '../../actions/auth';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -27,13 +26,12 @@ class SignInForm extends React.Component {
 
   onChange(event) {
     event.preventDefault();
+    const { target } = event;
 
-    const { name, value } = event.target;
-
-    this.setState((prev) => ({
+    this.setState((state) => ({
       user: {
-        ...prev,
-        [name]: value,
+        ...state.user,
+        [target.name]: target.value,
       },
     }));
   }
@@ -41,11 +39,11 @@ class SignInForm extends React.Component {
   onSubmit(event) {
     event.preventDefault();
 
-    const { signIn } = this.props;
+    const { signIn, history } = this.props;
     const { user } = this.state;
 
     signIn(user);
-    history.redirect('/');
+    history.push('/');
   }
 
   render() {

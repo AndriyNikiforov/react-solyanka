@@ -11,7 +11,7 @@ const Routes = () => (
     <Route exact path="/" component={Home} />
     <Route path="/create/" component={TodoCreate} />
     <Route path="/edit/:id" component={TodoCreate} />
-    <Route path="/signin" component={SignIn} />
+    <Route path="/login" component={SignIn} />
     <Route path="/signup" component={SignUp} />
   </Switch>
 );
