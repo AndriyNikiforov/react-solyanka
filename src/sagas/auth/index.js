@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { put, call } from 'redux-saga/effects';
 import {
   loginUserService,
@@ -11,7 +12,8 @@ export function* registerSaga(payload) {
   try {
     const response = yield call(registerUserService, payload);
 
-    yield put(auth.success(response.data));
+    yield Cookies.set('token', response.token);
+    yield put(auth.success(response));
   } catch (error) {
     yield put(auth.error(error));
   }

@@ -7,21 +7,21 @@ import {
 
 export const registerUserService = (request) => {
   const data = axios.post(REGISTER_API_ENDPOINT, request.payload)
-    .then((response) => response);
+    .then((response) => response.data);
 
   return data;
 };
 
 export const loginUserService = (request) => {
   const data = axios.post(LOGIN_API_ENDPOINT, request.payload)
-    .then((response) => response);
+    .then((response) => response.data);
 
   return data;
 };
 
 export const logoutUserService = (request) => {
   const data = axios.post(LOGOUT_API_ENDPOINT, request.payload)
-    .then((response) => response);
+    .then((response) => response.data);
 
   return data;
 };
