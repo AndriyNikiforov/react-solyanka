@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectItems = (props) => {
-  const { data } = props;
-
+const SelectItems = ({ data }) => {
   const items = data.map((item) => `
     <option>${item.name}</option>
   `);
@@ -13,11 +11,7 @@ const SelectItems = (props) => {
   `;
 };
 
-const Select = (props) => {
-  const { data } = props;
-
-  return <SelectItems data={data} />;
-};
+const Select = ({ data }) => (<SelectItems data={data} />);
 
 Select.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),

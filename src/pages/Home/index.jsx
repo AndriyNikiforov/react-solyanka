@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
-import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import Article from '../../components/Article';
@@ -14,7 +13,7 @@ const mapStateToProps = (state) => ({
   todos: getAllTodoResult(state),
 });
 
-const Home = ({ todos: todosData }) => {
+const Home = ({ todos: todosData = {} }) => {
   const dispatch = useDispatch();
   const token = Cookies.get('token');
 
@@ -36,14 +35,6 @@ const Home = ({ todos: todosData }) => {
       <Footer />
     </div>
   );
-};
-
-Home.propTypes = {
-  todos: PropTypes.objectOf(PropTypes.any),
-};
-
-Home.defaultProps = {
-  todos: {},
 };
 
 export default connect(mapStateToProps)(Home);
