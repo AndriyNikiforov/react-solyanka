@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import Header from '../../components/Header';
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => ({
 
 const Home = ({ todos: todosData }) => {
   const dispatch = useDispatch();
+  const token = Cookies.get('token');
 
   useEffect(() => {
     dispatch(todos.request());
@@ -26,7 +28,9 @@ const Home = ({ todos: todosData }) => {
       <Article className="content">
         <div className="section">
           <TextBlock text="TODO" />
-          <List data={todosData} />
+          {
+            (token) ? <List data={todosData} /> : 'Empty'
+          }
         </div>
       </Article>
       <Footer />

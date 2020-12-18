@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -88,10 +87,5 @@ class SignInForm extends React.Component {
     );
   }
 }
-
-SignInForm.propTypes = {
-  email: PropTypes.string,
-  password: PropTypes.string,
-};
 
 export default withRouter(connect(null, mapDispatchToProps)(SignInForm));

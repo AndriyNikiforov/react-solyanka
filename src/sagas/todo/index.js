@@ -1,17 +1,10 @@
 import { put, call } from 'redux-saga/effects';
-import {
-  todoAllService,
-  todoDetailService,
-  todoCreateService,
-  todoUpdateService,
-  todoDeleteService,
-  todoToggleService,
-} from '../../services/todoService';
+import todoServices from '../../services/api/todoService';
 import todos from '../../actions/todo';
 
 export function* todoAllSaga(payload) {
   try {
-    const response = yield call(todoAllService, payload);
+    const response = yield call(todoServices.todoAllService, payload);
     const { todos: todosData } = response.data;
 
     yield put(todos.success(todosData));
@@ -22,9 +15,9 @@ export function* todoAllSaga(payload) {
 
 export function* todoCreateSaga(payload) {
   try {
-    yield call(todoCreateService, payload);
+    yield call(todoServices.todoCreateService, payload);
 
-    const response = yield call(todoAllService, payload);
+    const response = yield call(todoServices.todoAllService, payload);
     const { todos: todosData } = response.data;
 
     yield put(todos.success(todosData));
@@ -35,7 +28,7 @@ export function* todoCreateSaga(payload) {
 
 export function* todoDetailSaga(payload) {
   try {
-    const response = yield call(todoDetailService, payload);
+    const response = yield call(todoServices.todoDetailService, payload);
     const { todos: todosData } = response.data;
 
     yield put(todos.detail(todosData));
@@ -46,9 +39,9 @@ export function* todoDetailSaga(payload) {
 
 export function* todoToggleSaga(payload) {
   try {
-    yield call(todoToggleService, payload);
+    yield call(todoServices.todoToggleService, payload);
 
-    const response = yield call(todoAllService, payload);
+    const response = yield call(todoServices.todoAllService, payload);
     const { todos: todosData } = response.data;
 
     yield put(todos.success(todosData));
@@ -59,9 +52,9 @@ export function* todoToggleSaga(payload) {
 
 export function* todoUpdateSaga(payload) {
   try {
-    yield call(todoUpdateService, payload);
+    yield call(todoServices.todoUpdateService, payload);
 
-    const response = yield call(todoAllService, payload);
+    const response = yield call(todoServices.todoAllService, payload);
     const { todos: todosData } = response.data;
 
     yield put(todos.success(todosData));
@@ -72,9 +65,9 @@ export function* todoUpdateSaga(payload) {
 
 export function* todoDeleteSaga(payload) {
   try {
-    yield call(todoDeleteService, payload);
+    yield call(todoServices.todoDeleteService, payload);
 
-    const response = yield call(todoAllService, payload);
+    const response = yield call(todoServices.todoAllService, payload);
     const { todos: todosData } = response.data;
 
     yield put(todos.success(todosData));
