@@ -10,20 +10,24 @@ const TextArea = ({
     value={value}
     className={className}
     onChange={onChange}
+    rows="30"
   />
 );
 
 TextArea.propTypes = {
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  value: PropTypes.string,
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 TextArea.defaultProps = {
+  name: '',
+  value: '',
   className: '',
   placeholder: '',
+  onChange: () => {},
 };
 
 export default TextArea;

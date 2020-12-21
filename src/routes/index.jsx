@@ -10,7 +10,10 @@ const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/create/" component={TodoCreate} />
-    <Route path="/edit/:id" component={TodoCreate} />
+    <Route
+      path="/edit/:id"
+      render={(props) => <TodoCreate { ...props } />}
+    />
     <Route path="/login" component={SignIn} />
     <Route path="/signup" component={SignUp} />
   </Switch>

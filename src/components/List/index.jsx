@@ -62,7 +62,9 @@ class List extends React.Component {
     const items = this.listElements();
 
     return (
-      <ul>{items}</ul>
+      <ul>
+        {items}
+      </ul>
     );
   }
 }

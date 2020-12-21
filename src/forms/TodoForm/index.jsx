@@ -40,6 +40,14 @@ class TodoForm extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps);
+  }
+
+  componentDidCatch(error, info) {
+    console.log(error, info);
+  }
+
   onChange(event) {
     event.preventDefault();
     const { target } = event;
