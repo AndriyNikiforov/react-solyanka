@@ -49,8 +49,8 @@ class List extends React.Component {
           <NavLink className="li-link" to={`/edit/${item.id}`}>
             Edit
           </NavLink>
-          <input value="Complete" type="button" onClick={() => onClickComplete({ ...item, status: 'COMPLETED' })} />
-          <input value="Remove" type="button" onClick={() => onClickDelete(item.id)} />
+          <input value="Complete" className="action-button" type="button" onClick={() => onClickComplete({ ...item, status: 'COMPLETED' })} />
+          <input value="Remove" className="action-button" type="button" onClick={() => onClickDelete(item.id)} />
         </div>
       </li>
     )) : (<></>);

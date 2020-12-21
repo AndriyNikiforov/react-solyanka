@@ -17,6 +17,13 @@
 
 .li-link {
   text-decoration: none;
+  text-align: center;
+  width: 40%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color:  #525564;
+  color:  #FEF6EB;
+  font-size: 14px;
 }
 
 .li-link:link {
@@ -24,14 +31,22 @@
 }
 
 .li-link:visited {
-  color: gray;
+  color: whitesmoke;
 }
 
 .li-buttons {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+}
+
+.action-button {
   width: 40%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color:  #525564;
+  color:  #FEF6EB;
+  font-family: "Roboto", sans-serif;
 }
 
 .label-status {
