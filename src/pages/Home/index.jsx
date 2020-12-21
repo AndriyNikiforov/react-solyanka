@@ -27,9 +27,7 @@ const Home = ({ todos: todosData = {} }) => {
       <Article className="content">
         <div className="section">
           <TextBlock text="TODO" />
-          {
-            (token) ? <List data={todosData} /> : 'Empty'
-          }
+          <List data={todosData} />
         </div>
       </Article>
       <Footer />

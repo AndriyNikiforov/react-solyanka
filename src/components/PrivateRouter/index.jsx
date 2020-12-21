@@ -1,24 +1,15 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Redirect, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-const PrivateRouter = ({ Component }) => {
+const PrivateRouter = ({ Component, path, exact }) => {
   const isAuthenticated = Cookies.get('token');
 
   return (isAuthenticated) ? (
-    <Component />
+    <Route path={path} exact={exact} component={Component} />
   ) : (
     <Redirect to={{ pathname: '/login' }} />
   );
-};
-
-PrivateRouter.propTypes = {
-  Component: PropTypes.node,
-};
-
-PrivateRouter.defaultProps = {
-  Component: (<></>),
 };
 
 export default PrivateRouter;

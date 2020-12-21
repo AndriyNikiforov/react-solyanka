@@ -5,15 +5,13 @@ import Home from '../pages/Home';
 import TodoCreate from '../pages/TodoCreate';
 import SignIn from '../pages/SingIn';
 import SignUp from '../pages/SignUp';
+import PrivateRouter from '../components/PrivateRouter';
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/create/" component={TodoCreate} />
-    <Route
-      path="/edit/:id"
-      render={(props) => <TodoCreate { ...props } />}
-    />
+    <PrivateRouter exact path="/" Component={Home} />
+    <PrivateRouter path="/create/" component={TodoCreate} />
+    <PrivateRouter path="/edit/:id" component={TodoCreate} />
     <Route path="/login" component={SignIn} />
     <Route path="/signup" component={SignUp} />
   </Switch>
