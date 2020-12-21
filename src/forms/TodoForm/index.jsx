@@ -41,7 +41,7 @@ class TodoForm extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps);
+    console.log(prevProps, prevState);
   }
 
   componentDidCatch(error, info) {
