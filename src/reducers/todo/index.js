@@ -27,7 +27,9 @@ export function loadingTodo(state = false, action) {
 export function todo(state = initialState, action) {
   switch (action.type) {
     case ALL_SUCCESS_TODO:
-      return [...action.payload];
+      return [
+        ...action.payload,
+      ];
     case ALL_FAILURE_TODO:
       return state;
     case ADD_TODO:

@@ -20,7 +20,6 @@ const mapStateToProps = (state) => ({
 class List extends React.Component {
   constructor(props) {
     super(props);
-
     this.listElements = this.listElements.bind(this);
   }
 

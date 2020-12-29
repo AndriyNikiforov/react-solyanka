@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { connect, useDispatch } from 'react-redux';
 import Header from '../../components/Header';
 import Article from '../../components/Article';
@@ -15,7 +14,6 @@ const mapStateToProps = (state) => ({
 
 const Home = ({ todos: todosData = {} }) => {
   const dispatch = useDispatch();
-  const token = Cookies.get('token');
 
   useEffect(() => {
     dispatch(todos.request());

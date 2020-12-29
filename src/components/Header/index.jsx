@@ -4,8 +4,12 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import auth from '../../actions/auth';
 
+const mapStateToProps = (state) => ({
+  data: state,
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(auth.logoutUserAction({})),
+  logout: (data) => dispatch(auth.logoutUserAction(data)),
 });
 
 class Header extends Component {
@@ -25,11 +29,11 @@ class Header extends Component {
   }
 
   logoutUser() {
-    const { history, logout } = this.props;
+    const { history, logout, data } = this.props;
 
     Cookies.remove('token');
-    logout();
     history.push('/login');
+    logout(data);
   }
 
   render() {
@@ -72,4 +76,4 @@ class Header extends Component {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

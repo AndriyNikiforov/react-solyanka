@@ -7,7 +7,10 @@ export function* todoAllSaga(payload) {
     const response = yield call(todoServices.todoAllService, payload);
     const { todos: todosData } = response.data;
 
-    yield put(todos.success(todosData));
+    yield put(todos.success({
+      todos: todosData,
+      isLoading: false,
+    }));
   } catch (error) {
     yield put(todos.failure(error));
   }
