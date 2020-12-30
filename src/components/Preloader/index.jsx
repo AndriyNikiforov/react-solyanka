@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const Preloader = (props) => {
+const Preloader = () => {
   const isLoading = useSelector((state) => state.loadingTodo);
 
   return (isLoading) ? (
