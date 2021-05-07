@@ -1,21 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextArea = (props) => {
-  const {
-    placeholder, value, className, onChange, name,
-  } = props;
-
-  return (
-    <textarea
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      className={className}
-      onChange={onChange}
-    />
-  );
-};
+const TextArea = ({
+  placeholder, value, className, onChange, name,
+}) => (
+  <textarea
+    name={name}
+    placeholder={placeholder}
+    value={value}
+    className={className}
+    onChange={onChange}
+    rows="30"
+  />
+);
 
 TextArea.propTypes = {
   name: PropTypes.string,

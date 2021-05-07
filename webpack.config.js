@@ -1,5 +1,4 @@
 const path = require('path');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -8,6 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, './build'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   devServer: {
     historyApiFallback: true,
@@ -36,6 +36,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new ManifestPlugin(),
   ],
 };

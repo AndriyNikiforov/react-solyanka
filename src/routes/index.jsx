@@ -2,13 +2,18 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from '../pages/Home';
-import TodoCreate from '../pages/TodoCreate';
+import TodoForm from '../pages/TodoForm';
+import SignIn from '../pages/SingIn';
+import SignUp from '../pages/SignUp';
+import PrivateRouter from '../components/PrivateRouter';
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/create/" component={TodoCreate} />
-    <Route path="/edit/:id" component={TodoCreate} />
+    <PrivateRouter exact path="/" Component={Home} />
+    <PrivateRouter path="/create/" Component={TodoForm} />
+    <PrivateRouter path="/edit/:id" Component={TodoForm} />
+    <Route path="/login" component={SignIn} />
+    <Route path="/signup" component={SignUp} />
   </Switch>
 );
 

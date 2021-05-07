@@ -4,14 +4,15 @@ import ReactDOM from 'react-dom';
 import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 import Routes from './routes';
-import store from './store';
-import history from './utils/history';
+import Storages from './store';
 import './styles/index.scss';
 
 ReactDOM.render(
-    <Provider store={store}>
-      <Router history={history}>
+  <Provider store={Storages.store}>
+    <PersistGate loading={null} persistor={Storages.persistor}>
+      <Router>
         <Routes />
         <Helmet>
           <html lang="en" />
@@ -19,6 +20,7 @@ ReactDOM.render(
           <title>Title</title>
         </Helmet>
       </Router>
-    </Provider>,
-    document.getElementById('root'),
+    </PersistGate>
+  </Provider>,
+  document.getElementById('root'),
 );

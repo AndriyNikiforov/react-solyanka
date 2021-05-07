@@ -2,19 +2,20 @@ import {
   REGISTER_USER,
   LOGIN_USER,
   LOGOUT_USER,
+  SUCCESS_AUTH,
+  ERROR_AUTH,
 } from '../../constants';
 
-export const registerUserAction = (user) => ({
-  type: REGISTER_USER,
-  payload: user,
-});
+function action(type, payload = {}) {
+  return { type, payload };
+}
 
-export const loginUserAction = (user) => ({
-  type: LOGIN_USER,
-  payload: user,
-});
+const auth = {
+  registerUserAction: (request) => action(REGISTER_USER, request),
+  loginUserAction: (request) => action(LOGIN_USER, request),
+  logoutUserAction: (request) => action(LOGOUT_USER, request),
+  success: (response) => action(SUCCESS_AUTH, response),
+  error: (response) => action(ERROR_AUTH, response),
+};
 
-export const logoutUserAction = (user) => ({
-  type: LOGOUT_USER,
-  payload: user,
-});
+export default auth;

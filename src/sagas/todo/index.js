@@ -1,47 +1,80 @@
 import { put, call } from 'redux-saga/effects';
-import {
-  todoAllService,
-  todoDetailService,
-  todoCreateService,
-  todoUpdateService,
-  todoDeleteService,
-} from '../../services/todoService';
+import todoServices from '../../services/api/todoService';
 import todos from '../../actions/todo';
 
 export function* todoAllSaga(payload) {
   try {
-    const response = yield call(todoAllService, payload);
+    const response = yield call(todoServices.todoAllService, payload);
     const { todos: todosData } = response.data;
 
-    yield put(todos.success(todosData));
+    yield put(todos.success({
+      todos: todosData,
+      isLoading: false,
+    }));
   } catch (error) {
     yield put(todos.failure(error));
   }
 }
 
 export function* todoCreateSaga(payload) {
-  yield call(todoCreateService, payload);
+  try {
+    yield call(todoServices.todoCreateService, payload);
 
-  yield put(todos.add(payload));
+    const response = yield call(todoServices.todoAllService, payload);
+    const { todos: todosData } = response.data;
+
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }
 
 export function* todoDetailSaga(payload) {
-  const response = yield call(todoDetailService, payload);
-  const { todos: todosData } = response.data;
+  try {
+    const response = yield call(todoServices.todoDetailService, payload);
+    const { todos: todosData } = response.data;
 
-  yield put(todos.detail(todosData));
+    yield put(todos.detail(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
+}
+
+export function* todoToggleSaga(payload) {
+  try {
+    yield call(todoServices.todoToggleService, payload);
+
+    const response = yield call(todoServices.todoAllService, payload);
+    const { todos: todosData } = response.data;
+
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }
 
 export function* todoUpdateSaga(payload) {
-  const response = yield call(todoUpdateService, payload);
-  const { todos: todosData } = response.data;
+  try {
+    yield call(todoServices.todoUpdateService, payload);
 
-  yield put(todos.update(todosData));
+    const response = yield call(todoServices.todoAllService, payload);
+    const { todos: todosData } = response.data;
+
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }
 
 export function* todoDeleteSaga(payload) {
-  const response = yield call(todoDeleteService, payload);
-  const { todos: todosData } = response.data;
+  try {
+    yield call(todoServices.todoDeleteService, payload);
 
-  yield put(todos.delete(todosData));
+    const response = yield call(todoServices.todoAllService, payload);
+    const { todos: todosData } = response.data;
+
+    yield put(todos.success(todosData));
+  } catch (error) {
+    yield put(todos.apiError(error));
+  }
 }

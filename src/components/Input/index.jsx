@@ -1,22 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = (props) => {
-  const {
-    type, placeholder, onChange, className, value, name,
-  } = props;
-
-  return (
-    <input
-      className={className}
-      name={name}
-      value={value}
-      type={type}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
-  );
-};
+const Input = ({
+  type, placeholder, onChange, className, value, name,
+}) => (
+  <input
+    className={className}
+    name={name}
+    value={value}
+    type={type}
+    placeholder={placeholder}
+    onChange={onChange}
+  />
+);
 
 Input.propTypes = {
   name: PropTypes.string,

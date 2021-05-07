@@ -1,36 +1,37 @@
+import Cookies from 'js-cookie';
 import { put, call } from 'redux-saga/effects';
-import { registerUserService, loginUserService, logoutUserService } from '../../services/authService';
+import authServices from '../../services/api/authService';
 
-import * as types from '../../constants';
+import auth from '../../actions/auth';
 
 export function* registerSaga(payload) {
   try {
-    const response = yield call(registerUserService, payload);
+    const response = yield call(authServices.registerUserService, payload);
 
-    yield [
-      put({ type: types.REGISTER_USER_SUCCESS, response }),
-    ];
+    yield Cookies.set('token', response.token);
+    yield put(auth.success(response));
   } catch (error) {
-    yield put({ type: types.REGISTER_USER_ERROR, error });
+    yield put(auth.error(error));
   }
 }
 
 export function* loginSaga(payload) {
   try {
-    const response = yield call(loginUserService, payload);
+    const response = yield call(authServices.loginUserService, payload);
 
-    yield [
-      put({ type: types.LOGIN_USER_SUCCESS, response }),
-    ];
+    yield Cookies.set('token', response.token);
+    yield put(auth.success(response));
   } catch (error) {
-    yield put({ type: types.LOGIN_USER_ERROR });
+    yield put(auth.error(error));
   }
 }
 
 export function* logoutSaga(payload) {
-  const response = yield call(logoutUserService, payload);
+  try {
+    yield call(authServices.logoutUserService, payload);
 
-  yield [
-    put({ type: types.LOGOUT_USER, response }),
-  ];
+    yield put(auth.success(payload));
+  } catch (error) {
+    yield put(auth.error(error));
+  }
 }

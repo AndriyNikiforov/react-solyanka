@@ -8,10 +8,10 @@ import Input from '../../components/Input';
 import auth from '../../actions/auth';
 
 const mapDispatchToProps = (dispatch) => ({
-  signUp: (user) => dispatch(auth.registerUserAction(user)),
+  signIn: (user) => dispatch(auth.loginUserAction(user)),
 });
 
-class SignUpForm extends React.Component {
+class SignInForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -38,10 +38,10 @@ class SignUpForm extends React.Component {
   onSubmit(event) {
     event.preventDefault();
 
-    const { signUp, history } = this.props;
+    const { signIn, history } = this.props;
     const { user } = this.state;
 
-    signUp(user);
+    signIn(user);
     history.push('/');
   }
 
@@ -50,21 +50,6 @@ class SignUpForm extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <div>
-          <Label
-            text="Username"
-            htmlFor="username"
-            className="label-info"
-          />
-          <Input
-            className="form-control"
-            name="username"
-            type="text"
-            value={user.username}
-            placeholder="Username"
-            onChange={this.onChange}
-          />
-        </div>
         <div>
           <Label
             text="Email"
@@ -103,4 +88,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(SignUpForm));
+export default withRouter(connect(null, mapDispatchToProps)(SignInForm));

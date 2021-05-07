@@ -4,7 +4,7 @@ import Article from '../../components/Article';
 import TodoForm from '../../forms/TodoForm';
 import Footer from '../../components/Footer';
 
-const TodoCreate = () => (
+const TodoFormPage = () => (
   <div className="container">
     <Header />
     <Article className="content">
@@ -16,4 +16,4 @@ const TodoCreate = () => (
   </div>
 );
 
-export default TodoCreate;
+export default TodoFormPage;
